@@ -1,31 +1,93 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #1f2937;
-  text-align: center;
-  padding: 3rem 1rem;
+@layer reset, base, components, utilities;
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, h1, h2, p, figure {
+    margin: 0;
+  }
 }
-h1 {
-  color: #993d0b;
+
+@layer base {
+  :root {
+  color-scheme: light dark;
+  --space: 1rem;
+  --color-bg: light-dark(oklch(98% 0.01 255), oklch(20% 0.02 255));
+  --color-text: light-dark(oklch(25% 0.02 255), oklch(94% 0.01 255));
+  --color-accent: light-dark(oklch(45% 0.18 255), oklch(75% 0.12 255));
+  --color-surface: color-mix(in oklch, var(--color-bg) 92%, var(--color-accent));
+  --color-border: color-mix(in oklch, var(--color-text) 55%, var(--color-bg));
+  --color-muted: color-mix(in oklch, var(--color-text) 75%, var(--color-bg));
 }
-.skip-link {
-  position: absolute;
-  top: 0;
-  left: 1rem;
-  transform: translateY(-150%);
-  padding: 0.75rem 1rem;
-  background: #ffffff;
-  color: #003d8f;
-  z-index: 1000;
+  body {
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+    padding: var(--space);
+    color: var(--color-text);
+    background: var(--color-bg);
+  }
+  input, textarea, button {
+    font: inherit;
+  }
 }
-.skip-link:focus {
-  transform: translateY(0);
+
+@layer components {
+  h1, h2 {
+    color: var(--color-accent);
+  }
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    transform: translateY(-150%);
+    padding: 0.75rem 1rem;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    z-index: 1000;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  nav a {
+    display: inline-block;
+    padding: 12px;
+  }
+  main {
+    max-inline-size: 60rem;
+    margin-inline: auto;
+    padding-block: 1rem;
+  }
+  form p {
+    margin-block: 0.5rem 1rem;
+  }
+  :where(nav ul li) a { color: var(--color-accent); }
+  .nav-link { color: var(--color-accent); }
+  a[aria-current="location"] { color: var(--color-accent); font-weight: bold; }
+
+  button {
+  color: var(--color-bg);
+  background: var(--color-accent);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
-:focus-visible {
-  outline: 3px solid #0b5fff;
-  outline-offset: 2px;
+button:hover {
+  background: color-mix(in oklch, var(--color-accent), black 15%);
 }
-nav a {
-  display: inline-block;
-  padding: 12px;
+svg {
+  color: var(--color-accent);
 }
+}
+
+@layer utilities {
+  .text-muted {
+    color: var(--color-muted);
+  }
+}
+@layer base { #schedule-heading { color: crimson; } }
+@layer components { h2 { color: var(--color-accent); } }
