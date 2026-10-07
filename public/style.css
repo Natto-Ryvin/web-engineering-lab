@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #1f2937;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+h1 {
+  color: #993d0b;
+}
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-150%);
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  color: #003d8f;
+  z-index: 1000;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+:focus-visible {
+  outline: 3px solid #0b5fff;
+  outline-offset: 2px;
+}
+nav a {
+  display: inline-block;
+  padding: 12px;
+}
